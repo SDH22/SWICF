@@ -3,626 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash Flow Report - Live Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #0056b3;
-            --secondary-color: #e9f7ff;
-            --accent-color: #003d7a;
-            --light-color: #f4f4f4;
-            --dark-color: #333;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            color: var(--dark-color);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-color);
-        }
-        
-        h1, h2, h3 {
-            color: var(--primary-color);
-            margin-top: 20px;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-top: 0;
-        }
-        
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 30px;
-        }
-        
-        .date-info {
-            background: var(--secondary-color);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-        
-        .summary-cards {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            flex: 1;
-            min-width: 280px;
-            border-left: 5px solid var(--primary-color);
-        }
-        
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .card h3 i {
-            color: var(--primary-color);
-        }
-        
-        .card-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 10px 0;
-            color: var(--primary-color);
-        }
-        
-        .card-desc {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .cash-flow-section {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 20px;
-        }
-        
-        .cash-flow-column {
-            flex: 1;
-            min-width: 45%;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-top: 5px solid var(--primary-color);
-        }
-        
-        .cash-flow-column h3 {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .scenario-item {
-            margin-bottom: 12px;
-            padding: 8px 0;
-            border-bottom: 1px dashed #eee;
-        }
-        
-        .scenario-item strong {
-            display: inline-block;
-            width: 140px;
-            color: var(--accent-color);
-        }
-        
-        .scenario-1 {
-            color: var(--success-color);
-        }
-        
-        .scenario-2 {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        
-        .scenario-3 {
-            color: var(--warning-color);
-        }
-        
-        .total-encashment {
-            font-weight: bold;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 2px solid #eee;
-            font-size: 1.1em;
-            color: var(--accent-color);
-            background: var(--secondary-color);
-            padding: 15px;
-            border-radius: 8px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px 15px;
-            text-align: left;
-        }
-        
-        th {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        tr:hover {
-            background-color: #f1f7ff;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .status-completed {
-            background-color: #e8f5e9;
-            color: var(--success-color);
-        }
-        
-        .status-in-progress {
-            background-color: #fff3e0;
-            color: var(--warning-color);
-        }
-        
-        .status-pending {
-            background-color: #ffebee;
-            color: var(--danger-color);
-        }
-        
-        .payment-mode {
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-        
-        tfoot tr {
-            background-color: var(--secondary-color);
-            font-weight: bold;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-        
-        .refresh-info {
-            text-align: center;
-            margin: 10px 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .refresh-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-        
-        .refresh-btn:hover {
-            background: var(--accent-color);
-        }
-        
-        .error-message {
-            background: #ffebee;
-            color: var(--danger-color);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
-        
-        .success-message {
-            background: #e8f5e9;
-            color: var(--success-color);
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-        }
-        
-        footer {
-            margin-top: 40px;
-            text-align: center;
-            color: #666;
-            font-size: 0.9rem;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        @media (max-width: 768px) {
-            .summary-cards, .cash-flow-section {
-                flex-direction: column;
-            }
-            
-            .card, .cash-flow-column {
-                min-width: 100%;
-            }
-            
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-        }
-    </style>
+    <title>Sales Report Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-chart-line"></i> Cash Flow Report - Live Dashboard</h1>
-            <div class="date-info">
-                <i class="far fa-calendar-alt"></i> Last Updated: <span id="last-updated">Loading...</span>
-            </div>
-        </header>
-
-        <div class="refresh-info">
-            <button class="refresh-btn" onclick="loadData()"><i class="fas fa-sync-alt"></i> Refresh Data</button>
-            <div>Data updates automatically every 5 minutes</div>
-        </div>
-
-        <div id="error-message" class="error-message" style="display: none;"></div>
-        <div id="success-message" class="success-message" style="display: none;"></div>
-
-        <div class="summary-cards">
-            <div class="card">
-                <h3><i class="fas fa-file-invoice-dollar"></i> Sales Report Data</h3>
-                <div class="card-value" id="total-sales">Loading...</div>
-                <div class="card-desc">Base Case Scenario A+B</div>
-            </div>
-            <div class="card">
-                <h3><i class="far fa-clock"></i> Time Period Covered</h3>
-                <div class="card-value">17 Sep - 15 Nov</div>
-                <div class="card-desc">59 Days Total</div>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-money-bill-wave"></i> Total Projected</h3>
-                <div class="card-value" id="total-projected">Loading...</div>
-                <div class="card-desc">Period A + Period B</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="fas fa-chart-line me-2"></i>Sales Report Dashboard
+            </span>
+            <div class="text-white">
+                <small>Last Updated: <span id="lastUpdated">Loading...</span></small>
             </div>
         </div>
+    </nav>
 
-        <h2><i class="fas fa-chart-bar"></i> Projected Cash Flow Overview</h2>
+    <div class="container-fluid mt-4">
+        <!-- KPI Cards -->
+        <div class="row" id="kpiCards">
+            <!-- KPI cards will be dynamically loaded here -->
+        </div>
 
-        <div class="cash-flow-section">
-            <div class="cash-flow-column">
-                <h3>(A) 17 Sep - 15 Oct <span>29 Days</span></h3>
-                <p><strong>Projected Cash Flow:</strong> <span id="projected-a">Loading...</span> AED</p>
-                
-                <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> <span class="scenario-1">811,547 AED (OPTIMISTIC CASE)</span></div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> <span class="scenario-2" id="base-a">764,593 AED (BASE CASE)</span></div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> <span class="scenario-3">611,547 AED (CONSERVATIVE CASE)</span></div>
-                <div class="total-encashment"><i class="fas fa-coins"></i> CURRENT ENCASHMENT: <span id="current-a">Loading...</span></div>
+        <!-- Charts Section -->
+        <div class="row mt-4">
+            <!-- Scenario Comparison -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Scenario Comparison</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="scenarioChart" height="250"></canvas>
+                    </div>
+                </div>
             </div>
 
-            <div class="cash-flow-column">
-                <h3>(B) 16 Oct - 15 Nov <span>30 Days</span></h3>
-                <p><strong>Projected Cash Flow:</strong> <span id="projected-b">Loading...</span> AED</p>
-                
-                <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> <span class="scenario-1">811,547 AED (OPTIMISTIC CASE)</span></div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> <span class="scenario-2" id="base-b">506,250 AED (BASE CASE)</span></div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> <span class="scenario-3">611,547 AED (CONSERVATIVE CASE)</span></div>
-                <div class="total-encashment"><i class="fas fa-coins"></i> CURRENT ENCASHMENT: <span id="current-b">Loading...</span></div>
+            <!-- Payment Mode Distribution -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Payment Mode Distribution</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="paymentChart" height="250"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <h2><i class="fas fa-users"></i> Detailed Customer Encashment</h2>
-
-        <div class="cash-flow-section">
-            <div class="cash-flow-column">
-                <h3>Period A: 17 Sep - 15 Oct</h3>
-                <div class="loading" id="loading-a"><i class="fas fa-spinner fa-spin"></i> Loading data...</div>
-                <table id="table-a" style="display: none;">
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Amount (AED)</th>
-                            <th>Current Status</th>
-                            <th>Payment Mode</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-a">
-                        <!-- Data will be loaded here -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><strong>Total Encashment (CDC)</strong></td>
-                            <td colspan="3"><strong id="total-a">Loading...</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-            <div class="cash-flow-column">
-                <h3>Period B: 16 Oct - 15 Nov</h3>
-                <div class="loading" id="loading-b"><i class="fas fa-spinner fa-spin"></i> Loading data...</div>
-                <table id="table-b" style="display: none;">
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Amount (AED)</th>
-                            <th>Current Status</th>
-                            <th>Payment Mode</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-b">
-                        <!-- Data will be loaded here -->
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><strong>Total Encashment</strong></td>
-                            <td colspan="3"><strong id="total-b">Loading...</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
+        <!-- Status Overview -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Payment Status Overview</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="statusChart" height="150"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <footer>
-            <p>Cash Flow Report - Live Dashboard | Data sourced from Google Sheets | Last updated: <span id="footer-updated">Loading...</span></p>
-        </footer>
+        <!-- Customer Data Table -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title">Customer Details</h5>
+                        <div>
+                            <select id="periodFilter" class="form-select form-select-sm">
+                                <option value="all">All Periods</option>
+                                <option value="A">Period A (17 Sep - 15 Oct)</option>
+                                <option value="B">Period B (16 Oct - 15 Nov)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="customerTable">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Amount (AED)</th>
+                                        <th>Status</th>
+                                        <th>Payment Mode</th>
+                                        <th>Period</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customerTableBody">
+                                    <!-- Data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-        // CONFIGURATION - Your Google Sheets CSV URL
-        const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR4QeWemXn6QQQqqg8U2h2GqquOoeLIbQZ_vSrQrWZlAWoSVFrS0hblCKUZL6yMyg/pub?output=csv';
-        
-        // Status mapping for color coding
-        const statusMap = {
-            'completed': 'status-completed',
-            'received': 'status-completed', 
-            'signed': 'status-in-progress',
-            'preparation': 'status-in-progress',
-            'process': 'status-in-progress',
-            'ready': 'status-in-progress',
-            'pending': 'status-pending',
-            'forecasted': 'status-pending',
-            'yet to be': 'status-pending'
-        };
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
 
-        function getStatusClass(status) {
-            if (!status) return 'status-in-progress';
-            
-            const statusLower = status.toLowerCase();
-            for (const [key, className] of Object.entries(statusMap)) {
-                if (statusLower.includes(key)) {
-                    return className;
-                }
-            }
-            return 'status-in-progress';
-        }
-
-        function showError(message) {
-            const errorDiv = document.getElementById('error-message');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            document.getElementById('success-message').style.display = 'none';
-        }
-
-        function showSuccess(message) {
-            const successDiv = document.getElementById('success-message');
-            successDiv.textContent = message;
-            successDiv.style.display = 'block';
-            document.getElementById('error-message').style.display = 'none';
-        }
-
-        function hideMessages() {
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('success-message').style.display = 'none';
-        }
-
-        async function loadData() {
-            try {
-                showLoadingStates();
-                hideMessages();
-                
-                console.log('Fetching data from Google Sheets...');
-                const response = await fetch(GOOGLE_SHEETS_URL);
-                
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
-                }
-                
-                const csvData = await response.text();
-                console.log('Raw CSV data received:', csvData);
-                
-                if (!csvData || csvData.trim().length === 0) {
-                    throw new Error('No data received from Google Sheets');
-                }
-                
-                const rows = csvData.split('\n').filter(row => row.trim() !== '');
-                
-                if (rows.length <= 1) {
-                    throw new Error('No data rows found in spreadsheet');
-                }
-                
-                // Parse header to understand column structure
-                const headers = rows[0].split(',').map(h => h.trim().toLowerCase());
-                console.log('CSV Headers:', headers);
-                
-                // Remove header row and process data
-                const dataRows = rows.slice(1);
-                
-                let periodATotal = 0;
-                let periodBTotal = 0;
-                let currentA = 0;
-                let currentB = 0;
-                
-                // Clear existing data
-                document.getElementById('tbody-a').innerHTML = '';
-                document.getElementById('tbody-b').innerHTML = '';
-                
-                dataRows.forEach((row, index) => {
-                    if (row.trim()) {
-                        const cells = row.split(',').map(cell => cell.trim());
-                        console.log(`Row ${index}:`, cells);
-                        
-                        // Try to map columns dynamically based on content
-                        let customer = '', amount = 0, status = '', paymentMode = '', period = 'A';
-                        
-                        // Simple heuristic mapping - adjust based on your actual CSV structure
-                        if (cells.length >= 1) customer = cells[0];
-                        if (cells.length >= 2) amount = parseFloat(cells[1]) || 0;
-                        if (cells.length >= 3) status = cells[2];
-                        if (cells.length >= 4) paymentMode = cells[3];
-                        if (cells.length >= 5) period = cells[4];
-                        
-                        // If amount is 0, try to find amount in other columns
-                        if (amount === 0) {
-                            for (let i = 0; i < cells.length; i++) {
-                                const potentialAmount = parseFloat(cells[i]);
-                                if (potentialAmount && !isNaN(potentialAmount)) {
-                                    amount = potentialAmount;
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        const statusClass = getStatusClass(status);
-                        const statusBadge = `<span class="status-badge ${statusClass}">${status}</span>`;
-                        
-                        const rowHTML = `
-                            <tr>
-                                <td>${customer}</td>
-                                <td>${amount.toLocaleString()}</td>
-                                <td>${statusBadge}</td>
-                                <td class="payment-mode">${paymentMode}</td>
-                            </tr>
-                        `;
-                        
-                        if (period.trim().toUpperCase() === 'A' || (period === '' && index < 5)) {
-                            document.getElementById('tbody-a').innerHTML += rowHTML;
-                            periodATotal += amount;
-                            if (status.toLowerCase().includes('completed') || status.toLowerCase().includes('received') || status.toLowerCase().includes('signed')) {
-                                currentA += amount;
-                            }
-                        } else if (period.trim().toUpperCase() === 'B' || (period === '' && index >= 5)) {
-                            document.getElementById('tbody-b').innerHTML += rowHTML;
-                            periodBTotal += amount;
-                            if (status.toLowerCase().includes('completed') || status.toLowerCase().includes('received') || status.toLowerCase().includes('signed')) {
-                                currentB += amount;
-                            }
-                        }
-                    }
-                });
-                
-                // Update totals and displays
-                document.getElementById('total-a').textContent = `${periodATotal.toLocaleString()} AED`;
-                document.getElementById('total-b').textContent = `${periodBTotal.toLocaleString()} AED`;
-                document.getElementById('current-a').textContent = `${currentA.toLocaleString()} AED`;
-                document.getElementById('current-b').textContent = `${currentB.toLocaleString()} AED`;
-                document.getElementById('projected-a').textContent = periodATotal.toLocaleString();
-                document.getElementById('projected-b').textContent = periodBTotal.toLocaleString();
-                document.getElementById('total-projected').textContent = `${(periodATotal + periodBTotal).toLocaleString()} AED`;
-                
-                const totalSales = (periodATotal + periodBTotal) / 1000000;
-                document.getElementById('total-sales').textContent = `${totalSales.toFixed(1)} Million AED`;
-                
-                // Show tables and hide loading
-                document.getElementById('table-a').style.display = 'table';
-                document.getElementById('table-b').style.display = 'table';
-                document.getElementById('loading-a').style.display = 'none';
-                document.getElementById('loading-b').style.display = 'none';
-                
-                // Update timestamps
-                const now = new Date();
-                document.getElementById('last-updated').textContent = now.toLocaleString();
-                document.getElementById('footer-updated').textContent = now.toLocaleString();
-                
-                console.log('Data loaded successfully');
-                showSuccess(`Data loaded successfully! Found ${dataRows.length} records.`);
-                
-            } catch (error) {
-                console.error('Error loading data:', error);
-                showError(`Error loading data: ${error.message}. Please check your Google Sheets data and try again.`);
-                document.getElementById('last-updated').textContent = 'Error loading data';
-            }
-        }
-
-        function showLoadingStates() {
-            document.getElementById('last-updated').textContent = 'Updating...';
-            document.getElementById('loading-a').style.display = 'block';
-            document.getElementById('loading-b').style.display = 'block';
-            document.getElementById('table-a').style.display = 'none';
-            document.getElementById('table-b').style.display = 'none';
-        }
-
-        // Load data on page load and every 5 minutes
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Dashboard initialized');
-            loadData();
-            setInterval(loadData, 300000); // 5 minutes
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
