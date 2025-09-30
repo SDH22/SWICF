@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash Flow Report - Till 15 Nov 2025</title>
+    <title>Cash Flow Report - Live Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -244,6 +244,51 @@
             font-weight: bold;
         }
         
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .refresh-info {
+            text-align: center;
+            margin: 10px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .refresh-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        
+        .refresh-btn:hover {
+            background: var(--accent-color);
+        }
+        
+        .error-message {
+            background: #ffebee;
+            color: var(--danger-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .success-message {
+            background: #e8f5e9;
+            color: var(--success-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
         footer {
             margin-top: 40px;
             text-align: center;
@@ -273,16 +318,24 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-chart-line"></i> SWI Cash InFlow Report</h1>
+            <h1><i class="fas fa-chart-line"></i> Cash Flow Report - Live Dashboard</h1>
             <div class="date-info">
-                <i class="far fa-calendar-alt"></i> Date: 30/9/2025
+                <i class="far fa-calendar-alt"></i> Last Updated: <span id="last-updated">Loading...</span>
             </div>
         </header>
+
+        <div class="refresh-info">
+            <button class="refresh-btn" onclick="loadData()"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+            <div>Data updates automatically every 5 minutes</div>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <div id="success-message" class="success-message" style="display: none;"></div>
 
         <div class="summary-cards">
             <div class="card">
                 <h3><i class="fas fa-file-invoice-dollar"></i> Sales Report Data</h3>
-                <div class="card-value">1.2 Million AED</div>
+                <div class="card-value" id="total-sales">Loading...</div>
                 <div class="card-desc">Base Case Scenario A+B</div>
             </div>
             <div class="card">
@@ -292,7 +345,7 @@
             </div>
             <div class="card">
                 <h3><i class="fas fa-money-bill-wave"></i> Total Projected</h3>
-                <div class="card-value">1,270,843 AED</div>
+                <div class="card-value" id="total-projected">Loading...</div>
                 <div class="card-desc">Period A + Period B</div>
             </div>
         </div>
@@ -302,24 +355,24 @@
         <div class="cash-flow-section">
             <div class="cash-flow-column">
                 <h3>(A) 17 Sep - 15 Oct <span>29 Days</span></h3>
-                <p><strong>Projected Cash Flow:</strong> 764,593 AED <small>(As on 30 Sep 2025)</small></p>
+                <p><strong>Projected Cash Flow:</strong> <span id="projected-a">Loading...</span> AED</p>
                 
                 <h4>Scenarios:</h4>
                 <div class="scenario-item"><strong>SCENARIO 1:</strong> <span class="scenario-1">811,547 AED (OPTIMISTIC CASE)</span></div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> <span class="scenario-2">764,593 AED (BASE CASE)</span></div>
+                <div class="scenario-item"><strong>SCENARIO 2:</strong> <span class="scenario-2" id="base-a">764,593 AED (BASE CASE)</span></div>
                 <div class="scenario-item"><strong>SCENARIO 3:</strong> <span class="scenario-3">611,547 AED (CONSERVATIVE CASE)</span></div>
-                <div class="total-encashment"><i class="fas fa-coins"></i> CURRENT ENCASHMENT: 317,909 AED</div>
+                <div class="total-encashment"><i class="fas fa-coins"></i> CURRENT ENCASHMENT: <span id="current-a">Loading...</span></div>
             </div>
 
             <div class="cash-flow-column">
                 <h3>(B) 16 Oct - 15 Nov <span>30 Days</span></h3>
-                <p><strong>Projected Cash Flow:</strong> 506,250 AED <small>(As on 30 Sep 2025)</small></p>
+                <p><strong>Projected Cash Flow:</strong> <span id="projected-b">Loading...</span> AED</p>
                 
                 <h4>Scenarios:</h4>
                 <div class="scenario-item"><strong>SCENARIO 1:</strong> <span class="scenario-1">811,547 AED (OPTIMISTIC CASE)</span></div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> <span class="scenario-2">506,250 AED (BASE CASE)</span></div>
+                <div class="scenario-item"><strong>SCENARIO 2:</strong> <span class="scenario-2" id="base-b">506,250 AED (BASE CASE)</span></div>
                 <div class="scenario-item"><strong>SCENARIO 3:</strong> <span class="scenario-3">611,547 AED (CONSERVATIVE CASE)</span></div>
-                <div class="total-encashment"><i class="fas fa-coins"></i> CURRENT ENCASHMENT: Data not available</div>
+                <div class="total-encashment"><i class="fas fa-coins"></i> CURRENT ENCASHMENT: <span id="current-b">Loading...</span></div>
             </div>
         </div>
 
@@ -328,7 +381,8 @@
         <div class="cash-flow-section">
             <div class="cash-flow-column">
                 <h3>Period A: 17 Sep - 15 Oct</h3>
-                <table>
+                <div class="loading" id="loading-a"><i class="fas fa-spinner fa-spin"></i> Loading data...</div>
+                <table id="table-a" style="display: none;">
                     <thead>
                         <tr>
                             <th>Customer</th>
@@ -337,72 +391,13 @@
                             <th>Payment Mode</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>ALPHASTARWOOD JOINERY</td>
-                            <td>296,226</td>
-                            <td><span class="status-badge status-completed">LC Process Completed</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>PLANET ECO</td>
-                            <td>44,683</td>
-                            <td><span class="status-badge status-in-progress">23K Received</span></td>
-                            <td class="payment-mode">CASH</td>
-                        </tr>
-                        <tr>
-                            <td>STARWOOD</td>
-                            <td>47,334</td>
-                            <td><span class="status-badge status-completed">LC Process Completed</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>Al KARNAK</td>
-                            <td>102,154</td>
-                            <td><span class="status-badge status-in-progress">LC PAPER SIGNED</span></td>
-                            <td class="payment-mode">CASH</td>
-                        </tr>
-                        <tr>
-                            <td>ROYAL JOINERY</td>
-                            <td>78,828</td>
-                            <td><span class="status-badge status-in-progress">Cheque Under Preparation</span></td>
-                            <td class="payment-mode">CDC</td>
-                        </tr>
-                        <tr>
-                            <td>DIG</td>
-                            <td>48,536</td>
-                            <td><span class="status-badge status-in-progress">Cheque Under Preparation</span></td>
-                            <td class="payment-mode">CDC</td>
-                        </tr>
-                        <tr>
-                            <td>PARKWAY INTERNATIONAL</td>
-                            <td>86,457</td>
-                            <td><span class="status-badge status-in-progress">LC Paper under signature</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>PARKWAY INTERNATIONAL</td>
-                            <td>60,375</td>
-                            <td><span class="status-badge status-pending">Additional Forecasted</span></td>
-                            <td class="payment-mode">-</td>
-                        </tr>
-                        <tr>
-                            <td>Al KARNAK</td>
-                            <td>47,250</td>
-                            <td><span class="status-badge status-in-progress">LC Under Process</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>IIF or Others</td>
-                            <td>9,450</td>
-                            <td><span class="status-badge status-pending">Pending</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
+                    <tbody id="tbody-a">
+                        <!-- Data will be loaded here -->
                     </tbody>
                     <tfoot>
                         <tr>
                             <td><strong>Total Encashment (CDC)</strong></td>
-                            <td colspan="3"><strong>821,293 AED</strong></td>
+                            <td colspan="3"><strong id="total-a">Loading...</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -410,7 +405,8 @@
 
             <div class="cash-flow-column">
                 <h3>Period B: 16 Oct - 15 Nov</h3>
-                <table>
+                <div class="loading" id="loading-b"><i class="fas fa-spinner fa-spin"></i> Loading data...</div>
+                <table id="table-b" style="display: none;">
                     <thead>
                         <tr>
                             <th>Customer</th>
@@ -419,42 +415,13 @@
                             <th>Payment Mode</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>ALPHASTARWOOD JOINERY</td>
-                            <td>250,000</td>
-                            <td><span class="status-badge status-in-progress">LC under process</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>PLANET ECO</td>
-                            <td>20,000</td>
-                            <td><span class="status-badge status-pending">Yet to be supplied</span></td>
-                            <td class="payment-mode">CASH</td>
-                        </tr>
-                        <tr>
-                            <td>Al KARNAK</td>
-                            <td>141,750</td>
-                            <td><span class="status-badge status-in-progress">LC under process</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>PARKWAY INTERNATIONAL</td>
-                            <td>60,375</td>
-                            <td><span class="status-badge status-completed">LC in Place</span></td>
-                            <td class="payment-mode">LC</td>
-                        </tr>
-                        <tr>
-                            <td>RATTAN HOUSE</td>
-                            <td>34,125</td>
-                            <td><span class="status-badge status-in-progress">Cheque Ready</span></td>
-                            <td class="payment-mode">CHEQUE DUE ON 30 OCT</td>
-                        </tr>
+                    <tbody id="tbody-b">
+                        <!-- Data will be loaded here -->
                     </tbody>
                     <tfoot>
                         <tr>
                             <td><strong>Total Encashment</strong></td>
-                            <td colspan="3"><strong>506,250 AED</strong></td>
+                            <td colspan="3"><strong id="total-b">Loading...</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -462,8 +429,200 @@
         </div>
 
         <footer>
-            <p>Cash Flow Report - Generated on 30/9/2025 | Data as of Till 15 Nov 2025</p>
+            <p>Cash Flow Report - Live Dashboard | Data sourced from Google Sheets | Last updated: <span id="footer-updated">Loading...</span></p>
         </footer>
     </div>
+
+    <script>
+        // CONFIGURATION - Your Google Sheets CSV URL
+        const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR4QeWemXn6QQQqqg8U2h2GqquOoeLIbQZ_vSrQrWZlAWoSVFrS0hblCKUZL6yMyg/pub?output=csv';
+        
+        // Status mapping for color coding
+        const statusMap = {
+            'completed': 'status-completed',
+            'received': 'status-completed', 
+            'signed': 'status-in-progress',
+            'preparation': 'status-in-progress',
+            'process': 'status-in-progress',
+            'ready': 'status-in-progress',
+            'pending': 'status-pending',
+            'forecasted': 'status-pending',
+            'yet to be': 'status-pending'
+        };
+
+        function getStatusClass(status) {
+            if (!status) return 'status-in-progress';
+            
+            const statusLower = status.toLowerCase();
+            for (const [key, className] of Object.entries(statusMap)) {
+                if (statusLower.includes(key)) {
+                    return className;
+                }
+            }
+            return 'status-in-progress';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            document.getElementById('success-message').style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            document.getElementById('error-message').style.display = 'none';
+        }
+
+        function hideMessages() {
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('success-message').style.display = 'none';
+        }
+
+        async function loadData() {
+            try {
+                showLoadingStates();
+                hideMessages();
+                
+                console.log('Fetching data from Google Sheets...');
+                const response = await fetch(GOOGLE_SHEETS_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+                }
+                
+                const csvData = await response.text();
+                console.log('Raw CSV data received:', csvData);
+                
+                if (!csvData || csvData.trim().length === 0) {
+                    throw new Error('No data received from Google Sheets');
+                }
+                
+                const rows = csvData.split('\n').filter(row => row.trim() !== '');
+                
+                if (rows.length <= 1) {
+                    throw new Error('No data rows found in spreadsheet');
+                }
+                
+                // Parse header to understand column structure
+                const headers = rows[0].split(',').map(h => h.trim().toLowerCase());
+                console.log('CSV Headers:', headers);
+                
+                // Remove header row and process data
+                const dataRows = rows.slice(1);
+                
+                let periodATotal = 0;
+                let periodBTotal = 0;
+                let currentA = 0;
+                let currentB = 0;
+                
+                // Clear existing data
+                document.getElementById('tbody-a').innerHTML = '';
+                document.getElementById('tbody-b').innerHTML = '';
+                
+                dataRows.forEach((row, index) => {
+                    if (row.trim()) {
+                        const cells = row.split(',').map(cell => cell.trim());
+                        console.log(`Row ${index}:`, cells);
+                        
+                        // Try to map columns dynamically based on content
+                        let customer = '', amount = 0, status = '', paymentMode = '', period = 'A';
+                        
+                        // Simple heuristic mapping - adjust based on your actual CSV structure
+                        if (cells.length >= 1) customer = cells[0];
+                        if (cells.length >= 2) amount = parseFloat(cells[1]) || 0;
+                        if (cells.length >= 3) status = cells[2];
+                        if (cells.length >= 4) paymentMode = cells[3];
+                        if (cells.length >= 5) period = cells[4];
+                        
+                        // If amount is 0, try to find amount in other columns
+                        if (amount === 0) {
+                            for (let i = 0; i < cells.length; i++) {
+                                const potentialAmount = parseFloat(cells[i]);
+                                if (potentialAmount && !isNaN(potentialAmount)) {
+                                    amount = potentialAmount;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        const statusClass = getStatusClass(status);
+                        const statusBadge = `<span class="status-badge ${statusClass}">${status}</span>`;
+                        
+                        const rowHTML = `
+                            <tr>
+                                <td>${customer}</td>
+                                <td>${amount.toLocaleString()}</td>
+                                <td>${statusBadge}</td>
+                                <td class="payment-mode">${paymentMode}</td>
+                            </tr>
+                        `;
+                        
+                        if (period.trim().toUpperCase() === 'A' || (period === '' && index < 5)) {
+                            document.getElementById('tbody-a').innerHTML += rowHTML;
+                            periodATotal += amount;
+                            if (status.toLowerCase().includes('completed') || status.toLowerCase().includes('received') || status.toLowerCase().includes('signed')) {
+                                currentA += amount;
+                            }
+                        } else if (period.trim().toUpperCase() === 'B' || (period === '' && index >= 5)) {
+                            document.getElementById('tbody-b').innerHTML += rowHTML;
+                            periodBTotal += amount;
+                            if (status.toLowerCase().includes('completed') || status.toLowerCase().includes('received') || status.toLowerCase().includes('signed')) {
+                                currentB += amount;
+                            }
+                        }
+                    }
+                });
+                
+                // Update totals and displays
+                document.getElementById('total-a').textContent = `${periodATotal.toLocaleString()} AED`;
+                document.getElementById('total-b').textContent = `${periodBTotal.toLocaleString()} AED`;
+                document.getElementById('current-a').textContent = `${currentA.toLocaleString()} AED`;
+                document.getElementById('current-b').textContent = `${currentB.toLocaleString()} AED`;
+                document.getElementById('projected-a').textContent = periodATotal.toLocaleString();
+                document.getElementById('projected-b').textContent = periodBTotal.toLocaleString();
+                document.getElementById('total-projected').textContent = `${(periodATotal + periodBTotal).toLocaleString()} AED`;
+                
+                const totalSales = (periodATotal + periodBTotal) / 1000000;
+                document.getElementById('total-sales').textContent = `${totalSales.toFixed(1)} Million AED`;
+                
+                // Show tables and hide loading
+                document.getElementById('table-a').style.display = 'table';
+                document.getElementById('table-b').style.display = 'table';
+                document.getElementById('loading-a').style.display = 'none';
+                document.getElementById('loading-b').style.display = 'none';
+                
+                // Update timestamps
+                const now = new Date();
+                document.getElementById('last-updated').textContent = now.toLocaleString();
+                document.getElementById('footer-updated').textContent = now.toLocaleString();
+                
+                console.log('Data loaded successfully');
+                showSuccess(`Data loaded successfully! Found ${dataRows.length} records.`);
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showError(`Error loading data: ${error.message}. Please check your Google Sheets data and try again.`);
+                document.getElementById('last-updated').textContent = 'Error loading data';
+            }
+        }
+
+        function showLoadingStates() {
+            document.getElementById('last-updated').textContent = 'Updating...';
+            document.getElementById('loading-a').style.display = 'block';
+            document.getElementById('loading-b').style.display = 'block';
+            document.getElementById('table-a').style.display = 'none';
+            document.getElementById('table-b').style.display = 'none';
+        }
+
+        // Load data on page load and every 5 minutes
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dashboard initialized');
+            loadData();
+            setInterval(loadData, 300000); // 5 minutes
+        });
+    </script>
 </body>
 </html>
