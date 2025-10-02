@@ -102,6 +102,10 @@
             font-size: 1.1em;
             color: #003d7a;
         }
+        .highlight {
+            background-color: #fffacd;
+            font-weight: bold;
+        }
         @media (max-width: 768px) {
             .header-info, .scenario-summary, .cash-flow-section {
                 flex-direction: column;
@@ -140,7 +144,7 @@
                 <div class="scenario-item"><strong>SCENARIO 1:</strong> 811,547 AED (OPTIMISTIC CASE)</div>
                 <div class="scenario-item"><strong>SCENARIO 2:</strong> 764,593 AED (BASE CASE)</div>
                 <div class="scenario-item"><strong>SCENARIO 3:</strong> 611,547 AED (CONSERVATIVE CASE)</div>
-                <div class="total-encashment">CURRENT ENCASHMENT: 317,909 AED</div>
+                <div class="total-encashment">CURRENT ENCASHMENT: 322,596 AED</div>
             </div>
 
             <div class="cash-flow-column">
@@ -171,13 +175,13 @@
                     </thead>
                     <tbody>
                         <tr><td>ALPHASTARWOOD JOINERY</td><td>296,226</td><td>LC Process Competed</td><td>LC</td></tr>
-                        <tr><td>PLANET ECO</td><td>44,683</td><td>23K Received</td><td>CASH</td></tr>
+                        <tr class="highlight"><td>PLANET ECO</td><td>47,370</td><td>23K Received</td><td>CASH</td></tr>
                         <tr><td>STARWOOD</td><td>47,334</td><td>LC Process Competed</td><td>LC</td></tr>
-                        <tr><td>Al KARNAK</td><td>102,154</td><td>LC PAPER SIGNED</td><td>CASH</td></tr>
+                        <tr class="highlight"><td>Al KARNAK</td><td>102,154</td><td>LC PAPER SIGNED</td><td>LC</td></tr>
                         <tr><td>ROYAL JOINERY</td><td>78,828</td><td>Cheque Under Preparation</td><td>CDC</td></tr>
                         <tr><td>DIG</td><td>48,536</td><td>Cheque Under Preparation</td><td>CDC</td></tr>
                         <tr><td>PARKWAY INTERNATIONAL</td><td>86,457</td><td>LC Paper under signature</td><td>LC</td></tr>
-                        <tr><td>PARKWAY INTERNATIONAL</td><td>60,375</td><td>Additional Forecasted</td><td></td></tr>
+                        <tr class="highlight"><td>PARKWAY INTERNATIONAL</td><td>36,225</td><td>Additional Forecasted</td><td></td></tr>
                         <tr><td>Al KARNAK</td><td>47,250</td><td>LC Under Process</td><td>LC</td></tr>
                         <tr><td>IIF or Others</td><td>9,450</td><td>Pending</td><td>LC</td></tr>
                         <tr><td>Al Kandas Interiors</td><td>1,905</td><td>Cash Sale</td><td>CASH</td></tr>
@@ -185,7 +189,7 @@
                     <tfoot>
                         <tr>
                             <td><strong>Total Encashment (CDC)</strong></td>
-                            <td colspan="3"><strong>823,198 AED</strong></td>
+                            <td colspan="3"><strong>801,735 AED</strong></td>
                         </tr>
                     </tfoot>
                 </table>
