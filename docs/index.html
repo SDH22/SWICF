@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Flow Report - Till 15 Dec 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+        .header-info, .scenario-summary {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .header-info div, .scenario-summary div {
+            background: #e9f7ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            flex: 1;
+            min-width: 280px;
+            margin-right: 15px;
+            box-sizing: border-box;
+        }
+        .header-info div:last-child, .scenario-summary div:last-child {
+            margin-right: 0;
+        }
+        .header-info div strong, .scenario-summary div strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #003d7a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #0056b3;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .cash-flow-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .cash-flow-column {
+            flex: 1;
+            min-width: 45%;
+            background: #eef;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .cash-flow-column h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        .scenario-item {
+            margin-bottom: 8px;
+        }
+        .scenario-item strong {
+            display: inline-block;
+            width: 120px;
+        }
+        .total-encashment {
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 1.1em;
+            color: #003d7a;
+        }
+        .highlight {
+            background-color: #fffacd;
+            font-weight: bold;
+        }
+        .new-update {
+            background-color: #e6ffe6;
+            font-weight: bold;
+        }
+        .on-hold {
+            background-color: #ffe6e6;
+            font-weight: bold;
+        }
+        .encashed {
+            background-color: #e6ffe6;
+            font-weight: bold;
+        }
+        .bold-row {
+            font-weight: bold;
+        }
+        .in-process {
+            background-color: #fffacd;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .header-info, .scenario-summary, .cash-flow-section {
+                flex-direction: column;
+            }
+            .header-info div, .scenario-summary div, .cash-flow-column {
+                margin-right: 0;
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cash Flow Report</h1>
+        <p><strong>Date:</strong> 20/11/2025</p>
+
+        <div class="header-info">
+            <div>
+                <strong>Sales Report Data</strong>
+                <span>Base Case Scenario A+B: 1.2 Million AED</span>
+            </div>
+            <div>
+                <strong>Time Period Covered</strong>
+                <span>16 Oct - 15 Dec</span>
+            </div>
+        </div>
+
+        <h2>Projected Cash Flow Overview</h2>
+
+        <div class="cash-flow-section">
+            <div class="cash-flow-column">
+                <h3>(A) 16 Oct - 15 Nov</h3>
+                <p><strong>Projected Cash Flow:</strong> 647,973 AED <small>(As on 20 Nov 2025)</small></p>
+                
+                <h4>Scenarios:</h4>
+                <div class="scenario-item"><strong>SCENARIO 1:</strong> 722,973 AED (OPTIMISTIC CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 2:</strong> 647,973 AED (BASE CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 3:</strong> 572,973 AED (CONSERVATIVE CASE)</div>
+                <div class="total-encashment">CURRENT ENCASHMENT: 276,071 AED Plus 177 K AED of LC Papers to be signed along with material supplies. </div>
+            </div>
+
+            <div class="cash-flow-column">
+                <h3>(B) 16 Nov - 15 Dec</h3>
+                <p><strong>Projected Cash Flow:</strong> 525,498 AED <small>(As on 20 Nov 2025)</small></p>
+                
+                <h4>Scenarios:</h4>
+                <div class="scenario-item"><strong>SCENARIO 1:</strong> 625,498 AED (OPTIMISTIC CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 2:</strong> 525,498 AED (BASE CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 3:</strong> 475,498 AED (CONSERVATIVE CASE)</div>
+                <div class="total-encashment">CURRENT ENCASHMENT: Nil</div>
+            </div>
+        </div>
+
+        <h2>Detailed Customer Encashment</h2>
+
+        <div class="cash-flow-section">
+            <div class="cash-flow-column">
+                <h3>Period A: 16 Oct - 15 Nov</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Amount (AED)</th>
+                            <th>Current Status</th>
+                            <th>Payment Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bold-row encashed"><td>ALPHASTARWOOD JOINERY</td><td>375,268</td><td>56% encashed (210,000 AED), 83K LC paper signed and submitted to Bank and balance 82K mater[...]
