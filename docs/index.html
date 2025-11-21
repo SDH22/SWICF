@@ -125,6 +125,10 @@
             background-color: #fffacd;
             font-weight: bold;
         }
+        .delayed {
+            background-color: #ffe6cc;
+            font-weight: bold;
+        }
         @media (max-width: 768px) {
             .header-info, .scenario-summary, .cash-flow-section {
                 flex-direction: column;
@@ -144,11 +148,11 @@
         <div class="header-info">
             <div>
                 <strong>Sales Report Data</strong>
-                <span>Base Case Scenario A+B: 1.2 Million AED</span>
+                <span>Base Case Scenario: 572,373 AED</span>
             </div>
             <div>
                 <strong>Time Period Covered</strong>
-                <span>16 Oct - 15 Dec</span>
+                <span>16 Nov - 15 Dec</span>
             </div>
         </div>
 
@@ -156,24 +160,13 @@
 
         <div class="cash-flow-section">
             <div class="cash-flow-column">
-                <h3>(A) 16 Oct - 15 Nov</h3>
-                <p><strong>Projected Cash Flow:</strong> 647,973 AED <small>(As on 20 Nov 2025)</small></p>
+                <h3>16 Nov - 15 Dec</h3>
+                <p><strong>Projected Cash Flow:</strong> 572,373 AED <small>(Base Case - As on 20 Nov 2025)</small></p>
                 
                 <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> 722,973 AED (OPTIMISTIC CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> 647,973 AED (BASE CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> 572,973 AED (CONSERVATIVE CASE)</div>
-                <div class="total-encashment">CURRENT ENCASHMENT: 276,071 AED Plus 177 K AED of LC Papers to be signed along with material supplies. </div>
-            </div>
-
-            <div class="cash-flow-column">
-                <h3>(B) 16 Nov - 15 Dec</h3>
-                <p><strong>Projected Cash Flow:</strong> 525,498 AED <small>(As on 20 Nov 2025)</small></p>
-                
-                <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> 625,498 AED (OPTIMISTIC CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> 525,498 AED (BASE CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> 475,498 AED (CONSERVATIVE CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 1:</strong> 622,373 AED (OPTIMISTIC CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 2:</strong> 572,373 AED (BASE CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 3:</strong> 520,000 AED (CONSERVATIVE CASE)</div>
                 <div class="total-encashment">CURRENT ENCASHMENT: Nil</div>
             </div>
         </div>
@@ -182,38 +175,7 @@
 
         <div class="cash-flow-section">
             <div class="cash-flow-column">
-                <h3>Period A: 16 Oct - 15 Nov</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Amount (AED)</th>
-                            <th>Current Status</th>
-                            <th>Payment Mode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bold-row encashed"><td>ALPHASTARWOOD JOINERY</td><td>375,268</td><td>56% encashed (210,000 AED), 83K LC paper signed and submitted to Bank and balance 82K material yet to be supplied</td><td>LC</td></tr>
-                        <tr class="bold-row"><td>DIG</td><td>46,068</td><td>Cheque PDC was not accepted from our end</td><td>CDC</td></tr>
-                        <tr class="bold-row"><td>PARKWAY INTERNATIONAL</td><td>60,373</td><td>33K supplied and balance 27K material yet to be supplied, Waiting for complete supply to submit the LC paper for signature </td><td>LC</td></tr>
-                        <tr class="bold-row new-update"><td>PLANET ECO</td><td>46,000</td><td>Price revised and 500 Pcs order received</td><td>CASH</td></tr>
-                        <tr class="bold-row"><td>RATTAN HOUSE</td><td>34,125</td><td>Cheque Received</td><td>Cheque</td></tr>
-                        <tr class="bold-row new-update"><td>Interiors International</td><td>28,350</td><td>Received (including additional 9,450 AED cash order)</td><td>Cash</td></tr>
-                        <tr class="bold-row on-hold"><td>Zoom Shipping</td><td>40,643</td><td>Order on hold</td><td>Cash</td></tr>
-                        <tr class="bold-row"><td>GWW</td><td>13,146</td><td>Received</td><td>Cash</td></tr>
-                        <tr class="bold-row new-update"><td>Others Unplanned</td><td>4,000</td><td>4K order received</td><td>Various</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><strong>Total Projected Cash Flow</strong></td>
-                            <td colspan="3"><strong>647,973 AED</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-            <div class="cash-flow-column">
-                <h3>Period B: 16 Nov - 15 Dec</h3>
+                <h3>Period: 16 Nov - 15 Dec</h3>
                 <table>
                     <thead>
                         <tr>
@@ -225,18 +187,18 @@
                     </thead>
                     <tbody>
                         <tr class="bold-row in-process"><td>Al Karnak</td><td>250,000</td><td>LC is under process now and expected next week</td><td>LC</td></tr>
-                        <tr><td>Parkway International</td><td>60,373</td><td>Order under process</td><td>Order in place LC in place </td></tr>
+                        <tr class="bold-row in-process"><td>ALPHASTARWOOD JOINERY</td><td>163,000</td><td>83K LC paper delayed at discrepancy acceptance stage. Balance 74K submitted for signature today. Total encashment pending: 163K AED</td><td>LC</td></tr>
+                        <tr class="delayed"><td>Parkway International</td><td>60,373</td><td>Our supply is delayed due to project delay at client end</td><td>LC</td></tr>
                         <tr><td>Starwood</td><td>55,000</td><td>New Pricing under discussion</td><td>To be confirmed</td></tr>
-                        <tr><td>Rattan House</td><td>34,125</td><td>Order Received</td><td>To be confirmed</td></tr>
-                        <tr><td>Wood Style</td><td>18,500</td><td>Order under process</td><td>To be confirmed</td></tr>
-                        <tr><td>Intermetal</td><td>38,000</td><td>Order Received</td><td>To be confirmed</td></tr>
-                        <tr><td>Ghuzlan</td><td>34,500</td><td>Order under process</td><td>To be confirmed</td></tr>
-                        <tr><td>Others Unplanned</td><td>35,000</td><td>Yet to be planned</td><td>Various</td></tr>
+                        <tr class="new-update"><td>Planet Eco</td><td>47,000</td><td>Payment under process</td><td>Cash</td></tr>
+                        <tr class="new-update"><td>IIF</td><td>22,000</td><td>Order under process</td><td>Cash</td></tr>
+                        <tr class="new-update"><td>GWW</td><td>10,000</td><td>Order under process</td><td>To be confirmed</td></tr>
+                        <tr><td>Others Unplanned</td><td>15,000</td><td>Yet to be planned</td><td>Various</td></tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td><strong>Total Projected Cash Flow</strong></td>
-                            <td colspan="3"><strong>525,498 AED</strong></td>
+                            <td colspan="3"><strong>622,373 AED</strong></td>
                         </tr>
                     </tfoot>
                 </table>
