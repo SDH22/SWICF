@@ -129,6 +129,14 @@
             background-color: #ffe6cc;
             font-weight: bold;
         }
+        .next-cycle {
+            background-color: #f0f0f0;
+            font-style: italic;
+        }
+        .projected {
+            background-color: #fffacd;
+            font-weight: bold;
+        }
         @media (max-width: 768px) {
             .header-info, .scenario-summary, .cash-flow-section {
                 flex-direction: column;
@@ -143,16 +151,20 @@
 <body>
     <div class="container">
         <h1>Cash Flow Report</h1>
-        <p><strong>Date:</strong> 20/11/2025</p>
+        <p><strong>Date:</strong> 8/12/2025</p>
 
         <div class="header-info">
             <div>
                 <strong>Sales Report Data</strong>
-                <span>Base Case Scenario: 626,953 AED</span>
+                <span>Base Case Scenario: 281,984 AED</span>
             </div>
             <div>
                 <strong>Time Period Covered</strong>
                 <span>16 Nov - 15 Dec</span>
+            </div>
+            <div>
+                <strong>Note for Next Cycle</strong>
+                <span>250,000 AED (Al Karnak), 27,273 AED (Parkway), and 3,676 AED (Planet Eco) moved to next cycle (15 Dec - 15 Jan)</span>
             </div>
         </div>
 
@@ -161,12 +173,12 @@
         <div class="cash-flow-section">
             <div class="cash-flow-column">
                 <h3>16 Nov - 15 Dec</h3>
-                <p><strong>Projected Cash Flow:</strong> 626,953 AED <small>(Base Case - As on 20 Nov 2025)</small></p>
+                <p><strong>Projected Cash Flow:</strong> 281,984 AED <small>(Base Case - As on 8 Dec 2025)</small></p>
                 
                 <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> 676,953 AED (OPTIMISTIC CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> 626,953 AED (BASE CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> 574,578 AED (CONSERVATIVE CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 1:</strong> 314,984 AED (OPTIMISTIC CASE - Includes 33,000 AED from Parkway International)</div>
+                <div class="scenario-item"><strong>SCENARIO 2:</strong> 281,984 AED (BASE CASE)</div>
+                <div class="scenario-item"><strong>SCENARIO 3:</strong> 281,984 AED (CONSERVATIVE CASE)</div>
             </div>
         </div>
 
@@ -215,17 +227,11 @@
                             <td>Encashed</td>
                             <td>LC</td>
                         </tr>
-                        <tr class="bold-row in-process">
+                        <tr class="encashed">
                             <td>Alphastarwood Joinery</td>
                             <td>73,000</td>
-                            <td>LC paper signed</td>
+                            <td>LC paper signed - Added to confirmed encashment</td>
                             <td>LC</td>
-                        </tr>
-                        <tr class="new-update">
-                            <td>Planet Eco</td>
-                            <td>10,658</td>
-                            <td>Balance of 22,050 AED (11,392 AED received, 10,658 AED remaining)</td>
-                            <td>Cash</td>
                         </tr>
                         <tr class="encashed">
                             <td>Intermetal</td>
@@ -239,47 +245,59 @@
                             <td>New cash order received</td>
                             <td>Cash</td>
                         </tr>
+                        <tr class="projected">
+                            <td>Planet Eco</td>
+                            <td>6,982.50</td>
+                            <td>Projected for current cycle (balance of 10,658 AED)</td>
+                            <td>Cash</td>
+                        </tr>
+                        <tr class="projected">
+                            <td>Royal Joinery</td>
+                            <td>1,764</td>
+                            <td>New cash order - Projected for current cycle</td>
+                            <td>Cash</td>
+                        </tr>
                         <tr class="in-process">
                             <td>Parkway International</td>
                             <td>33,000</td>
-                            <td>LC paper to be submitted</td>
+                            <td>LC paper to be submitted - Included in Optimistic Case only</td>
                             <td>LC</td>
                         </tr>
-                        <tr class="new-update">
-                            <td>Royal Joinery</td>
-                            <td>1,764</td>
-                            <td>Cash order received</td>
-                            <td>Cash</td>
-                        </tr>
-                        <tr class="bold-row in-process">
+                        <tr class="next-cycle">
                             <td>Al Karnak</td>
                             <td>250,000</td>
-                            <td>LC SWIFT Received</td>
+                            <td>Moved to next cycle (15 Dec - 15 Jan)</td>
                             <td>LC</td>
                         </tr>
-                        <tr class="delayed">
+                        <tr class="next-cycle">
                             <td>Parkway International</td>
                             <td>27,273</td>
-                            <td>Waiting for Site Clearance</td>
+                            <td>Waiting for Site Clearance - Moved to next cycle (15 Dec - 15 Jan)</td>
                             <td>LC</td>
                         </tr>
-                        <tr>
-                            <td>Others Unplanned</td>
-                            <td>15,000</td>
-                            <td>Yet to be planned</td>
+                        <tr class="next-cycle">
+                            <td>Planet Eco</td>
+                            <td>3,675.50</td>
+                            <td>Balance moved to next cycle (15 Dec - 15 Jan)</td>
                             <td>Cash</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td><strong>Total</strong></td>
-                            <td colspan="3"><strong>626,953 AED</strong></td>
+                            <td><strong>Total Projected for Current Cycle</strong></td>
+                            <td colspan="3"><strong>281,984 AED</strong></td>
                         </tr>
                     </tfoot>
                 </table>
                 
                 <div class="total-encashment">
-                    <strong>Total Encashed (Confirmed):</strong> 200,237 AED (11,025 + 19,866 + 58,642 + 2,977 + 83,000 + 11,340 + 13,387)
+                    <strong>Total Encashed (Confirmed):</strong> 273,237 AED
+                </div>
+                <div class="total-encashment">
+                    <strong>Projected Additions (Current Cycle):</strong> 8,747 AED (6,982.50 + 1,764)
+                </div>
+                <div class="total-encashment">
+                    <strong>Optimistic Case Additional:</strong> +33,000 AED (Parkway International) = 314,984 AED
                 </div>
             </div>
         </div>
