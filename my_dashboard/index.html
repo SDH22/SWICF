@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cash Flow Report - Till 15 Dec 2025</title>
+    <title>Cash Flow Timeline: 15 Dec 2025 - 15 Jan 2026</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,52 +12,27 @@
             background-color: #f4f4f4;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: auto;
             background: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        h1, h2, h3 {
+        h1 {
             color: #0056b3;
+            text-align: center;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
-            margin-top: 20px;
-        }
-        .header-info, .scenario-summary {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .header-info div, .scenario-summary div {
-            background: #e9f7ff;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            flex: 1;
-            min-width: 280px;
-            margin-right: 15px;
-            box-sizing: border-box;
-        }
-        .header-info div:last-child, .scenario-summary div:last-child {
-            margin-right: 0;
-        }
-        .header-info div strong, .scenario-summary div strong {
-            display: block;
-            margin-bottom: 5px;
-            color: #003d7a;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            margin-bottom: 30px;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
         th {
@@ -68,181 +43,121 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-        .cash-flow-section {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
+        .total-row {
+            background-color: #003d7a;
+            color: white;
+            font-weight: bold;
         }
-        .cash-flow-column {
-            flex: 1;
-            min-width: 45%;
-            background: #eef;
-            padding: 20px;
+        .sno {
+            font-weight: bold;
+            color: #0056b3;
+            width: 10%;
+        }
+        .lc-payment {
+            background-color: #e6f7ff;
+        }
+        .cash-payment {
+            background-color: #fff0e6;
+        }
+        .new-order {
+            background-color: #f0f8ff;
+            font-weight: bold;
+        }
+        .total-box {
+            background-color: #f0f8ff;
+            padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-        }
-        .cash-flow-column h3 {
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 8px;
-            margin-top: 0;
-        }
-        .scenario-item {
-            margin-bottom: 8px;
-        }
-        .scenario-item strong {
-            display: inline-block;
-            width: 120px;
-        }
-        .total-encashment {
-            font-weight: bold;
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-            font-size: 1.1em;
-            color: #003d7a;
-        }
-        .highlight {
-            background-color: #fffacd;
-            font-weight: bold;
-        }
-        .new-update {
-            background-color: #e6ffe6;
-            font-weight: bold;
-        }
-        .on-hold {
-            background-color: #ffe6e6;
-            font-weight: bold;
-        }
-        .encashed {
-            background-color: #e6ffe6;
-            font-weight: bold;
-        }
-        .bold-row {
-            font-weight: bold;
-        }
-        .in-process {
-            background-color: #fffacd;
-            font-weight: bold;
-        }
-        @media (max-width: 768px) {
-            .header-info, .scenario-summary, .cash-flow-section {
-                flex-direction: column;
-            }
-            .header-info div, .scenario-summary div, .cash-flow-column {
-                margin-right: 0;
-                min-width: 100%;
-            }
+            margin-top: 20px;
+            text-align: center;
+            border-left: 4px solid #0056b3;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cash Flow Report</h1>
-        <p><strong>Date:</strong> 20/11/2025</p>
-
-        <div class="header-info">
-            <div>
-                <strong>Sales Report Data</strong>
-                <span>Base Case Scenario A+B: 1.2 Million AED</span>
-            </div>
-            <div>
-                <strong>Time Period Covered</strong>
-                <span>16 Oct - 15 Dec</span>
-            </div>
-        </div>
-
-        <h2>Projected Cash Flow Overview</h2>
-
-        <div class="cash-flow-section">
-            <div class="cash-flow-column">
-                <h3>(A) 16 Oct - 15 Nov</h3>
-                <p><strong>Projected Cash Flow:</strong> 647,973 AED <small>(As on 20 Nov 2025)</small></p>
+        <h1>Cash Flow Timeline: 15 Dec 2025 - 15 Jan 2026</h1>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="10%">S.No</th>
+                    <th width="25%">Customer</th>
+                    <th width="20%">Amount (AED)</th>
+                    <th width="20%">Payment Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="lc-payment">
+                    <td class="sno">1</td>
+                    <td>Alpha</td>
+                    <td>74,777</td>
+                    <td>LC</td>
+                </tr>
                 
-                <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> 722,973 AED (OPTIMISTIC CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> 647,973 AED (BASE CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> 572,973 AED (CONSERVATIVE CASE)</div>
-                <div class="total-encashment">CURRENT ENCASHMENT: 276,071 AED Plus 177 K AED of LC Papers to be signed along with material supplies. </div>
-            </div>
-
-            <div class="cash-flow-column">
-                <h3>(B) 16 Nov - 15 Dec</h3>
-                <p><strong>Projected Cash Flow:</strong> 525,498 AED <small>(As on 20 Nov 2025)</small></p>
+                <tr class="lc-payment">
+                    <td class="sno">2</td>
+                    <td>Ginco</td>
+                    <td>102,438</td>
+                    <td>LC</td>
+                </tr>
                 
-                <h4>Scenarios:</h4>
-                <div class="scenario-item"><strong>SCENARIO 1:</strong> 625,498 AED (OPTIMISTIC CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 2:</strong> 525,498 AED (BASE CASE)</div>
-                <div class="scenario-item"><strong>SCENARIO 3:</strong> 475,498 AED (CONSERVATIVE CASE)</div>
-                <div class="total-encashment">CURRENT ENCASHMENT: Nil</div>
-            </div>
+                <tr class="lc-payment">
+                    <td class="sno">3</td>
+                    <td>Parkway</td>
+                    <td>93,300</td>
+                    <td>LC</td>
+                </tr>
+                
+                <tr class="cash-payment">
+                    <td class="sno">4</td>
+                    <td>IIF</td>
+                    <td>11,025</td>
+                    <td>Cash</td>
+                </tr>
+                
+                <tr class="lc-payment">
+                    <td class="sno">5</td>
+                    <td>Ginco</td>
+                    <td>102,438</td>
+                    <td>LC</td>
+                </tr>
+                
+                <tr class="cash-payment">
+                    <td class="sno">6</td>
+                    <td>IIF</td>
+                    <td>11,025</td>
+                    <td>Cash</td>
+                </tr>
+                
+                <tr class="cash-payment">
+                    <td class="sno">7</td>
+                    <td>Planet Eco</td>
+                    <td>14,700</td>
+                    <td>Cash</td>
+                </tr>
+                
+                <tr class="cash-payment">
+                    <td class="sno">8</td>
+                    <td>Planet Eco</td>
+                    <td>28,350</td>
+                    <td>Cash</td>
+                </tr>
+                
+                <tr class="cash-payment new-order">
+                    <td class="sno">9</td>
+                    <td>Neom Builder</td>
+                    <td>39,000</td>
+                    <td>Cash</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="total-box">
+            <strong>TOTAL CASH INFLOW: 477,053 AED</strong>
         </div>
-
-        <h2>Detailed Customer Encashment</h2>
-
-        <div class="cash-flow-section">
-            <div class="cash-flow-column">
-                <h3>Period A: 16 Oct - 15 Nov</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Amount (AED)</th>
-                            <th>Current Status</th>
-                            <th>Payment Mode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bold-row encashed"><td>ALPHASTARWOOD JOINERY</td><td>375,268</td><td>56% encashed (210,000 AED), 83K LC paper signed and submitted to Bank and balance 82K material yet to be supplied</td><td>LC</td></tr>
-                        <tr class="bold-row"><td>DIG</td><td>46,068</td><td>Cheque PDC was not accepted from our end</td><td>CDC</td></tr>
-                        <tr class="bold-row"><td>PARKWAY INTERNATIONAL</td><td>60,373</td><td>33K supplied and balance 27K material yet to be supplied, Waiting for complete supply to submit the LC paper for signature </td><td>LC</td></tr>
-                        <tr class="bold-row new-update"><td>PLANET ECO</td><td>46,000</td><td>Price revised and 500 Pcs order received</td><td>CASH</td></tr>
-                        <tr class="bold-row"><td>RATTAN HOUSE</td><td>34,125</td><td>Cheque Received</td><td>Cheque</td></tr>
-                        <tr class="bold-row new-update"><td>Interiors International</td><td>28,350</td><td>Received (including additional 9,450 AED cash order)</td><td>Cash</td></tr>
-                        <tr class="bold-row on-hold"><td>Zoom Shipping</td><td>40,643</td><td>Order on hold</td><td>Cash</td></tr>
-                        <tr class="bold-row"><td>GWW</td><td>13,146</td><td>Received</td><td>Cash</td></tr>
-                        <tr class="bold-row new-update"><td>Others Unplanned</td><td>4,000</td><td>4K order received</td><td>Various</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><strong>Total Projected Cash Flow</strong></td>
-                            <td colspan="3"><strong>647,973 AED</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-
-            <div class="cash-flow-column">
-                <h3>Period B: 16 Nov - 15 Dec</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Customer</th>
-                            <th>Amount (AED)</th>
-                            <th>Current Status</th>
-                            <th>Payment Mode</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bold-row in-process"><td>Al Karnak</td><td>250,000</td><td>LC is under process now and expected next week</td><td>LC</td></tr>
-                        <tr><td>Parkway International</td><td>60,373</td><td>Order under process</td><td>Order in place LC in place </td></tr>
-                        <tr><td>Starwood</td><td>55,000</td><td>New Pricing under discussion</td><td>To be confirmed</td></tr>
-                        <tr><td>Rattan House</td><td>34,125</td><td>Order Received</td><td>To be confirmed</td></tr>
-                        <tr><td>Wood Style</td><td>18,500</td><td>Order under process</td><td>To be confirmed</td></tr>
-                        <tr><td>Intermetal</td><td>38,000</td><td>Order Received</td><td>To be confirmed</td></tr>
-                        <tr><td>Ghuzlan</td><td>34,500</td><td>Order under process</td><td>To be confirmed</td></tr>
-                        <tr><td>Others Unplanned</td><td>35,000</td><td>Yet to be planned</td><td>Various</td></tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td><strong>Total Projected Cash Flow</strong></td>
-                            <td colspan="3"><strong>525,498 AED</strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
-
+        
+        <p><strong>Period:</strong> 15 December 2025 - 15 January 2026</p>
     </div>
 </body>
 </html>
