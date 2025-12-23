@@ -12,7 +12,7 @@
             background-color: #f4f4f4;
         }
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: auto;
             background: #fff;
             padding: 20px;
@@ -43,15 +43,9 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-        .total-row {
-            background-color: #003d7a;
-            color: white;
-            font-weight: bold;
-        }
         .sno {
             font-weight: bold;
             color: #0056b3;
-            width: 10%;
         }
         .lc-payment {
             background-color: #e6f7ff;
@@ -72,6 +66,25 @@
             border-left: 4px solid #0056b3;
             font-size: 1.2em;
         }
+        .status-completed {
+            background-color: #e6ffe6;
+            color: #006600;
+            font-weight: bold;
+        }
+        .status-pending {
+            background-color: #fff0e6;
+            color: #cc6600;
+            font-weight: bold;
+        }
+        .payment-type {
+            font-weight: bold;
+        }
+        .lc-type {
+            color: #0056b3;
+        }
+        .cash-type {
+            color: #cc6600;
+        }
     </style>
 </head>
 <body>
@@ -81,10 +94,12 @@
         <table>
             <thead>
                 <tr>
-                    <th width="10%">S.No</th>
-                    <th width="25%">Customer</th>
-                    <th width="20%">Amount (AED)</th>
-                    <th width="20%">Payment Type</th>
+                    <th width="8%">S.No</th>
+                    <th width="20%">Customer</th>
+                    <th width="15%">Amount (AED)</th>
+                    <th width="15%">Payment Type</th>
+                    <th width="20%">Order Status</th>
+                    <th width="22%">Supply Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,69 +107,96 @@
                     <td class="sno">1</td>
                     <td>Alpha</td>
                     <td>74,777</td>
-                    <td>LC</td>
+                    <td class="payment-type lc-type">LC</td>
+                    <td>Order received</td>
+                    <td class="status-completed">Supply completed</td>
                 </tr>
                 
                 <tr class="lc-payment">
                     <td class="sno">2</td>
                     <td>Ginco</td>
                     <td>102,438</td>
-                    <td>LC</td>
+                    <td class="payment-type lc-type">LC</td>
+                    <td>Order received</td>
+                    <td class="status-completed">Supply completed</td>
                 </tr>
                 
                 <tr class="lc-payment">
                     <td class="sno">3</td>
                     <td>Parkway</td>
                     <td>93,300</td>
-                    <td>LC</td>
+                    <td class="payment-type lc-type">LC</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
                 
                 <tr class="cash-payment">
                     <td class="sno">4</td>
                     <td>IIF</td>
                     <td>11,025</td>
-                    <td>Cash</td>
+                    <td class="payment-type cash-type">Cash</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
                 
                 <tr class="lc-payment">
                     <td class="sno">5</td>
                     <td>Ginco</td>
                     <td>102,438</td>
-                    <td>LC</td>
+                    <td class="payment-type lc-type">LC</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
                 
                 <tr class="cash-payment">
                     <td class="sno">6</td>
                     <td>IIF</td>
                     <td>11,025</td>
-                    <td>Cash</td>
+                    <td class="payment-type cash-type">Cash</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
                 
                 <tr class="cash-payment">
                     <td class="sno">7</td>
                     <td>Planet Eco</td>
                     <td>14,700</td>
-                    <td>Cash</td>
+                    <td class="payment-type cash-type">Cash</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
                 
                 <tr class="cash-payment">
                     <td class="sno">8</td>
                     <td>Planet Eco</td>
                     <td>28,350</td>
-                    <td>Cash</td>
+                    <td class="payment-type cash-type">Cash</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
+                </tr>
+                
+                <tr class="lc-payment">
+                    <td class="sno">9</td>
+                    <td>Ghuzlan</td>
+                    <td>73,500</td>
+                    <td class="payment-type lc-type">LC</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
                 
                 <tr class="cash-payment new-order">
-                    <td class="sno">9</td>
+                    <td class="sno">10</td>
                     <td>Neom Builder</td>
                     <td>39,000</td>
-                    <td>Cash</td>
+                    <td class="payment-type cash-type">Cash</td>
+                    <td>Order received</td>
+                    <td class="status-pending">Supply pending</td>
                 </tr>
             </tbody>
         </table>
         
         <div class="total-box">
-            <strong>TOTAL CASH INFLOW: 477,053 AED</strong>
+            <strong>TOTAL CASH INFLOW: 550,553 AED</strong>
         </div>
         
         <p><strong>Period:</strong> 15 December 2025 - 15 January 2026</p>
