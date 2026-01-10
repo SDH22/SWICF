@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Update</title>
+    <title>Order Update Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,10 +25,17 @@
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
         }
+        h2 {
+            color: #0056b3;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            margin-bottom: 30px;
         }
         th, td {
             border: 1px solid #ddd;
@@ -76,123 +83,202 @@
             border-radius: 5px;
             border-left: 4px solid #0056b3;
         }
+        .report-section {
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Order Update</h1>
+        <h1>Order Update Report</h1>
         
-        <table>
-            <thead>
-                <tr>
-                    <th width="8%">S.No</th>
-                    <th width="22%">Customer</th>
-                    <th width="18%">Amount (AED)</th>
-                    <th width="18%">Payment Type</th>
-                    <th width="18%">Order Status</th>
-                    <th width="16%">Supply Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="lc-payment">
-                    <td class="sno">1</td>
-                    <td>Alpha</td>
-                    <td>74,777</td>
-                    <td>LC</td>
-                    <td>Order Completed</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-                
-                <tr class="lc-payment">
-                    <td class="sno">2</td>
-                    <td>Ginco</td>
-                    <td>102,438</td>
-                    <td>LC</td>
-                    <td>Order Received</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-                
-                <tr class="lc-payment">
-                    <td class="sno">3</td>
-                    <td>Parkway</td>
-                    <td>93,300</td>
-                    <td>LC</td>
-                    <td>Order Received</td>
-                    <td class="status-pending">Pending</td>
-                </tr>
-                
-                <tr class="cash-payment">
-                    <td class="sno">4</td>
-                    <td>IIF</td>
-                    <td>11,025</td>
-                    <td>Cash</td>
-                    <td>Order Received & Encashed</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-                
-                <tr class="lc-payment">
-                    <td class="sno">5</td>
-                    <td>Ginco</td>
-                    <td>102,438</td>
-                    <td>LC</td>
-                    <td>Order Received</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-                
-                <tr class="cash-payment new-order">
-                    <td class="sno">6</td>
-                    <td>Al Qareeb Industries</td>
-                    <td>18,500</td>
-                    <td>Cash</td>
-                    <td>Order Received</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-                
-                <tr class="cash-payment">
-                    <td class="sno">7</td>
-                    <td>Planet Eco</td>
-                    <td>22,050</td>
-                    <td>Cash</td>
-                    <td>Order Received</td>
-                    <td class="status-pending">Pending</td>
-                </tr>
-                
-                <tr class="cash-payment">
-                    <td class="sno">8</td>
-                    <td>Planet Eco</td>
-                    <td>14,175</td>
-                    <td>Cash</td>
-                    <td>Order Received</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-                
-                <tr class="partial-payment new-order">
-                    <td class="sno">9</td>
-                    <td>Neom Builder</td>
-                    <td>39,000</td>
-                    <td>Cash</td>
-                    <td>Order Received</td>
-                    <td class="status-pending">Pending</td>
-                </tr>
-                
-                <tr class="cash-payment new-order">
-                    <td class="sno">10</td>
-                    <td>GWW</td>
-                    <td>16,632</td>
-                    <td>Cash</td>
-                    <td>Order Received</td>
-                    <td class="status-completed">Completed</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="report-section">
+            <h2>Period: 15 December 2025 - 15 January 2026</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th width="8%">S.No</th>
+                        <th width="22%">Customer</th>
+                        <th width="18%">Amount (AED)</th>
+                        <th width="18%">Payment Type</th>
+                        <th width="18%">Order Status</th>
+                        <th width="16%">Supply Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="lc-payment">
+                        <td class="sno">1</td>
+                        <td>Alpha</td>
+                        <td>74,777</td>
+                        <td>LC</td>
+                        <td>Order Completed</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                    
+                    <tr class="lc-payment">
+                        <td class="sno">2</td>
+                        <td>Ginco</td>
+                        <td>102,438</td>
+                        <td>LC</td>
+                        <td>Order Received</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                    
+                    <tr class="lc-payment">
+                        <td class="sno">3</td>
+                        <td>Parkway</td>
+                        <td>93,300</td>
+                        <td>LC</td>
+                        <td>Order Received</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="cash-payment">
+                        <td class="sno">4</td>
+                        <td>IIF</td>
+                        <td>11,025</td>
+                        <td>Cash</td>
+                        <td>Order Received & Encashed</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                    
+                    <tr class="lc-payment">
+                        <td class="sno">5</td>
+                        <td>Ginco</td>
+                        <td>102,438</td>
+                        <td>LC</td>
+                        <td>Order Received</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                    
+                    <tr class="cash-payment new-order">
+                        <td class="sno">6</td>
+                        <td>Al Qareeb Industries</td>
+                        <td>18,500</td>
+                        <td>Cash</td>
+                        <td>Order Received</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                    
+                    <tr class="cash-payment">
+                        <td class="sno">7</td>
+                        <td>Planet Eco</td>
+                        <td>22,050</td>
+                        <td>Cash</td>
+                        <td>Order Received</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="cash-payment">
+                        <td class="sno">8</td>
+                        <td>Planet Eco</td>
+                        <td>14,175</td>
+                        <td>Cash</td>
+                        <td>Order Received</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                    
+                    <tr class="partial-payment new-order">
+                        <td class="sno">9</td>
+                        <td>Neom Builder</td>
+                        <td>39,000</td>
+                        <td>Cash</td>
+                        <td>Order Received</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="cash-payment new-order">
+                        <td class="sno">10</td>
+                        <td>GWW</td>
+                        <td>16,632</td>
+                        <td>Cash</td>
+                        <td>Order Received</td>
+                        <td class="status-completed">Completed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="report-section">
+            <h2>Period: 16 January 2026 - 15 February 2026</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th width="8%">S.No</th>
+                        <th width="22%">Customer</th>
+                        <th width="18%">Amount (AED)</th>
+                        <th width="18%">Payment Type</th>
+                        <th width="18%">Order Status</th>
+                        <th width="16%">Supply Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="lc-payment new-order">
+                        <td class="sno">1</td>
+                        <td>Ghuzlan</td>
+                        <td>73,500</td>
+                        <td>LC</td>
+                        <td>Order Received</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="lc-payment new-order">
+                        <td class="sno">2</td>
+                        <td>Starwood</td>
+                        <td>259,875</td>
+                        <td>LC</td>
+                        <td>Order Received</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="lc-payment new-order">
+                        <td class="sno">3</td>
+                        <td>Ginco</td>
+                        <td>43,500</td>
+                        <td>LC</td>
+                        <td>Order Received</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="cash-payment new-order">
+                        <td class="sno">4</td>
+                        <td>IIF</td>
+                        <td>11,025</td>
+                        <td>Cash</td>
+                        <td>Order Pending</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="cash-payment new-order">
+                        <td class="sno">5</td>
+                        <td>Planet Eco</td>
+                        <td>14,700</td>
+                        <td>Cash</td>
+                        <td>Order Pending</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    
+                    <tr class="cash-payment new-order">
+                        <td class="sno">6</td>
+                        <td>Wood style</td>
+                        <td>11,550</td>
+                        <td>Cash</td>
+                        <td>Order Pending</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         
         <div class="period-info">
-            <p><strong>Period:</strong> 15 December 2025 - 15 January 2026</p>
             <p><strong>Note:</strong> All amounts are in UAE Dirhams (AED). LC = Letter of Credit.</p>
             <p><strong>Color Legend:</strong> 
                 <span style="display: inline-block; width: 12px; height: 12px; background-color: #e6f7ff; border: 1px solid #ddd; margin-right: 5px; margin-left: 15px;"></span> LC Payment | 
                 <span style="display: inline-block; width: 12px; height: 12px; background-color: #fff0e6; border: 1px solid #ddd; margin-right: 5px; margin-left: 15px;"></span> Cash Payment |
-                <span style="display: inline-block; width: 12px; height: 12px; background-color: #fff8e6; border: 1px solid #ddd; margin-right: 5px; margin-left: 15px;"></span> Partial Payment
+                <span style="display: inline-block; width: 12px; height: 12px; background-color: #fff8e6; border: 1px solid #ddd; margin-right: 5px; margin-left: 15px;"></span> Partial Payment |
+                <span style="display: inline-block; width: 12px; height: 12px; background-color: #f0f8ff; border: 1px solid #ddd; margin-right: 5px; margin-left: 15px;"></span> New Order
             </p>
         </div>
     </div>
