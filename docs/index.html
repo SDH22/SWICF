@@ -133,6 +133,23 @@
             font-weight: bold;
         }
         
+        .status-update {
+            color: #0056b3;
+            font-weight: bold;
+        }
+        
+        /* Highlight for important updates */
+        .update-highlight {
+            background-color: #f8f9fa;
+            border-left: 3px solid #0056b3;
+        }
+        
+        /* Highlight for completed items */
+        .completed-highlight {
+            background-color: #f1f8e9;
+            border-left: 3px solid #4caf50;
+        }
+        
         /* Summary and legend */
         .summary-box {
             background-color: #f8f9fa;
@@ -213,6 +230,36 @@
             border-radius: 5px;
             color: #856404;
         }
+        
+        /* Special note styling */
+        .special-note {
+            background-color: #fff8e6;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin-top: 5px;
+            border-left: 2px solid #ff9800;
+        }
+        
+        /* Completed note styling */
+        .completed-note {
+            background-color: #e8f5e9;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin-top: 5px;
+            border-left: 2px solid #4caf50;
+        }
+        
+        /* Pending TT note */
+        .pending-note {
+            background-color: #ffebee;
+            padding: 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin-top: 5px;
+            border-left: 2px solid #f44336;
+        }
     </style>
 </head>
 <body>
@@ -232,7 +279,7 @@
             <!-- Summary for Page 1 -->
             <div class="summary-box">
                 <strong>Period 1 Summary:</strong> 15 December 2025 - 15 January 2026<br>
-                <strong>Total Orders:</strong> 10 | <strong>Completed:</strong> 7 | <strong>Pending:</strong> 3
+                <strong>Total Orders:</strong> 10 | <strong>Completed:</strong> 8 | <strong>Pending:</strong> 2 | <strong>Under Process:</strong> 0
             </div>
             
             <div class="report-section">
@@ -250,12 +297,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="lc-payment">
+                        <!-- Alpha - Updated Supply Status to Completed -->
+                        <tr class="lc-payment completed-highlight">
                             <td class="sno">1</td>
                             <td>Alpha</td>
                             <td>74,777</td>
                             <td>LC</td>
-                            <td>Order Completed</td>
+                            <td>
+                                LC Amended
+                                <div class="completed-note">
+                                    Discrepancy acceptance under process<br>
+                                    Supply Completed
+                                </div>
+                            </td>
                             <td class="status-completed">Completed</td>
                         </tr>
                         
@@ -304,13 +358,14 @@
                             <td class="status-completed">Completed</td>
                         </tr>
                         
-                        <tr class="cash-payment">
+                        <!-- Planet Eco (22,050 AED) - Updated Supply Status to Completed -->
+                        <tr class="cash-payment completed-highlight">
                             <td class="sno">7</td>
                             <td>Planet Eco</td>
                             <td>22,050</td>
                             <td>Cash</td>
                             <td>Order Received</td>
-                            <td class="status-pending">Pending</td>
+                            <td class="status-completed">Completed</td>
                         </tr>
                         
                         <tr class="cash-payment">
@@ -322,12 +377,18 @@
                             <td class="status-completed">Completed</td>
                         </tr>
                         
-                        <tr class="partial-payment new-order">
+                        <!-- Neom Builder - Partial Payment Update -->
+                        <tr class="partial-payment new-order update-highlight">
                             <td class="sno">9</td>
                             <td>Neom Builder</td>
                             <td>39,000</td>
                             <td>Cash</td>
-                            <td>Order Received</td>
+                            <td>
+                                Partially Received
+                                <div class="special-note">
+                                    11,700 AED received via TT
+                                </div>
+                            </td>
                             <td class="status-pending">Pending</td>
                         </tr>
                         
@@ -341,6 +402,17 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            
+            <!-- Updates Summary for Page 1 -->
+            <div class="summary-box">
+                <strong>Recent Updates - Period 1:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>Alpha:</strong> Supply completed (LC amendment discrepancy under process)</li>
+                    <li><strong>Planet Eco (22,050 AED):</strong> Supply completed</li>
+                    <li><strong>Neom Builder:</strong> Partial payment of 11,700 AED received via TT</li>
+                    <li><strong>Note:</strong> TT = Telegraphic Transfer</li>
+                </ul>
             </div>
             
             <!-- Legend for Page 1 -->
@@ -362,6 +434,14 @@
                     <div class="legend-item">
                         <div class="color-box" style="background-color: #f0f8ff;"></div>
                         New Order
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #f8f9fa; border-left: 3px solid #0056b3;"></div>
+                        Recent Update
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #f1f8e9; border-left: 3px solid #4caf50;"></div>
+                        Completed Supply
                     </div>
                 </div>
             </div>
@@ -417,7 +497,7 @@
                             <td class="status-pending">Pending</td>
                         </tr>
                         
-                        <!-- New Starwood order added here -->
+                        <!-- New Starwood order -->
                         <tr class="lc-payment new-order">
                             <td class="sno">3</td>
                             <td>Starwood</td>
@@ -445,12 +525,18 @@
                             <td class="status-pending">Pending</td>
                         </tr>
                         
+                        <!-- Planet Eco - CORRECTED: TT has NOT been received -->
                         <tr class="cash-payment new-order">
                             <td class="sno">6</td>
                             <td>Planet Eco</td>
                             <td>14,700</td>
                             <td>Cash</td>
-                            <td>Order Pending</td>
+                            <td>
+                                Order Pending
+                                <div class="pending-note">
+                                    TT payment NOT received
+                                </div>
+                            </td>
                             <td class="status-pending">Pending</td>
                         </tr>
                         
@@ -475,20 +561,42 @@
                 </table>
             </div>
             
+            <!-- Updates Summary for Page 2 -->
+            <div class="summary-box">
+                <strong>Recent Updates - Period 2:</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>New Order:</strong> Additional Starwood order added (201,206 AED)</li>
+                    <li><strong>Correction:</strong> Planet Eco (14,700 AED) TT payment has NOT been received</li>
+                </ul>
+            </div>
+            
             <!-- Overall summary and notes -->
             <div class="summary-box">
                 <strong>Report Summary:</strong>
                 <ul style="margin-top: 10px; margin-left: 20px;">
                     <li>Total Orders Across Both Periods: <strong>18</strong></li>
-                    <li>Total Completed Orders: <strong>7</strong> (39%)</li>
-                    <li>Total Pending Orders: <strong>11</strong> (61%)</li>
+                    <li>Total Completed Supply: <strong>8</strong> (44%)</li>
+                    <li>Total Pending Supply: <strong>10</strong> (56%)</li>
                     <li>LC Payment Orders: <strong>9</strong></li>
                     <li>Cash Payment Orders: <strong>9</strong></li>
                     <li>Total Amount (AED): <strong>1,312,222</strong></li>
+                    <li>Amount Received via TT: <strong>11,700 AED</strong> (Neom only)</li>
+                    <li>Total Supply Completed (AED): <strong>440,839 AED</strong></li>
+                    <li>Pending TT Payments: <strong>14,700 AED</strong> (Planet Eco)</li>
                 </ul>
                 
                 <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd;">
-                    <strong>Note:</strong> All amounts are in UAE Dirhams (AED). LC = Letter of Credit.<br>
+                    <strong>Key Updates:</strong>
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        <li>Alpha supply completed despite LC amendment discrepancy under process</li>
+                        <li>Planet Eco (22,050 AED) supply completed</li>
+                        <li>Total completed supply increased to 8 orders</li>
+                        <li><strong>Correction:</strong> Planet Eco (14,700 AED) TT payment NOT received - order status pending</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd;">
+                    <strong>Note:</strong> All amounts are in UAE Dirhams (AED). LC = Letter of Credit, TT = Telegraphic Transfer.<br>
                     <strong>Disclaimer:</strong> This report is generated as of January 15, 2026. Statuses may change.
                 </div>
             </div>
@@ -512,6 +620,14 @@
                     <div class="legend-item">
                         <div class="color-box" style="background-color: #f0f8ff;"></div>
                         New Order
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #f8f9fa; border-left: 3px solid #0056b3;"></div>
+                        Recent Update
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #f1f8e9; border-left: 3px solid #4caf50;"></div>
+                        Completed Supply
                     </div>
                 </div>
             </div>
